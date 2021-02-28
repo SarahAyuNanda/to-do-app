@@ -13,6 +13,11 @@ code {
 }
 
 @font-face {
+  font-family: 'MontserratBold';
+  src: url(./asset/font/Montserrat/Montserrat-Bold.ttf) format('truetype');
+}
+
+@font-face {
   font-family: 'MontserratRegular';
   src: url(./asset/font/Montserrat/Montserrat-Regular.ttf) format('truetype');
 }
