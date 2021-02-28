@@ -5,7 +5,7 @@ import './index.css'
 const AppHeader = () => {
     return (
         <Header as='h1' icon textAlign='center'>
-            <Header.Content>
+            <Header.Content className='header-content'>
                 TODO APP
                 <Header.Subheader>
                     Create Your To Do List Here
