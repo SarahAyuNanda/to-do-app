@@ -1,8 +1,9 @@
 import React from 'react';
+import './index.css';
 
 const AppContent = () => {
     return (
-        <div>
+        <div className='app-content'>
 
         </div>
     );
