@@ -2,4 +2,15 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.input-list {
+    width: 1000px;
+    margin-top: 36px;
+}
+
+button.ui.blue.icon.right.labeled.button {
+    font-family: 'MontserratRegular';
 }
