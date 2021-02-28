@@ -1,0 +1,39 @@
+div.ui.cards {
+    width: 1000px;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+div.ui.card {
+    width: 800px;
+}
+
+div.content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.description {
+    width: 60%;
+    height: max-content;
+    word-wrap: break-word;
+    font-family: 'MontserratRegular';
+    text-align: justify;
+}
+
+div.description.action-list {
+    width: 40%;
+    height: max-content;
+    text-align: end;
+}
+
+i.icon {
+    font-size: 14px;
+}
