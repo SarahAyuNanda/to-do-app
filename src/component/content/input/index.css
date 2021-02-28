@@ -1,0 +1,9 @@
+.input-list {
+    width: 1000px;
+    margin-top: 36px;
+    margin-bottom: 24px;
+}
+
+button.ui.blue.icon.right.labeled.button {
+    font-family: 'MontserratRegular';
+}
