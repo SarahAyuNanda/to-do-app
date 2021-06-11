@@ -1,15 +1,15 @@
 div.ui.cards {
-    width: 1000px;
+    width: 1500px;
     height: max-content;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 div.ui.card {
-    width: 800px;
+    width: max-content;
 }
 
 div.content {
@@ -17,21 +17,37 @@ div.content {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-div.description {
-    width: 60%;
+/* div.description {
+    width: 100%;
     height: max-content;
     word-wrap: break-word;
     font-family: 'MontserratRegular';
     text-align: justify;
+    padding: 10px;
+} */
+
+div.description.check-list {
+    width: 10%;
+    height: max-content;
+}
+
+div.description.item-list {
+    width: 60%;
+    height: max-content;
+    margin-left: 14px;
+    word-wrap: break-word;
+    font-family: 'MontserratRegular';
+    text-align: left;
 }
 
 div.description.action-list {
     width: 40%;
     height: max-content;
-    text-align: end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 i.icon {
