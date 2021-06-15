@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputItem from './input';
 import CardItem from './card';
 import './index.css';
@@ -6,6 +6,10 @@ import './index.css';
 const AppContent = () => {
     const [item, setItem] = useState('')
     const [itemList, setItemList] = useState([])
+
+    useEffect(() => {
+        console.log("itemList value ", itemList)
+    }, [itemList])
 
     return (
         <div className='app-content'>
