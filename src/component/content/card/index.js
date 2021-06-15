@@ -6,6 +6,10 @@ import './index.css';
 const CardItem = props => {
     const { itemList, setItemList } = props
 
+    const onChangeStrikeThrough = value => {
+        return value ? "line-through" : "none"   
+    }
+
     const onCheckButton = (index, data) => {
         console.log("checked index value", index)
         console.log("checked data value", data)
@@ -22,9 +26,9 @@ const CardItem = props => {
         console.log(data);
     }
 
-    const onClickDeleteButton = (event, data) => {
+    const onClickDeleteButton = (event, index) => {
         let storeItem = [...itemList]
-        storeItem.splice(data, 1)
+        storeItem.splice(index, 1)
         setItemList(storeItem)
     }
 
@@ -40,14 +44,11 @@ const CardItem = props => {
                                     id={index}
                                     className="check-list"
                                     color="primary"
+                                    checked={isChecked}
                                     onClick={() => onCheckButton(index, item)}
                                 />
                             </Card.Description>
-                            {isChecked ?
-                                <Card.Description className="item-list">done</Card.Description>
-                                :
-                                <Card.Description className="item-list">{label}</Card.Description>
-                            }
+                            <Card.Description className="item-list" style={{"textDecoration": onChangeStrikeThrough(isChecked, index)}}>{label}</Card.Description>
                             <Card.Description className='action-list'>
                                 <Button color='yellow' onClick={event => onClickEditButton(event, index)}>
                                     <Button.Content>
