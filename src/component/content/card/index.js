@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, Checkbox, Icon } from 'semantic-ui-react';
 import './index.css';
 
 const CardItem = props => {
     const { itemList, setItemList } = props
-    const { itemCheck, setItemCheck } = useState(false)
 
-    const onCheckButton = event => {
-
+    const onCheckButton = (index, data) => {
+        console.log("checked index value", index)
+        console.log("checked data value", data)
+        const filterCheckedItem = itemList.map((item, i) => {
+            if (i === index) {
+                item.isChecked = !item.isChecked;
+            }
+            return item;
+        });
+        setItemList(filterCheckedItem);
     }
 
     const onClickEditButton = (event, data) => {
@@ -16,25 +23,31 @@ const CardItem = props => {
     }
 
     const onClickDeleteButton = (event, data) => {
-        let store = [...itemList]
-        store.splice(data, 1)
-        setItemList(store)
+        let storeItem = [...itemList]
+        storeItem.splice(data, 1)
+        setItemList(storeItem)
     }
 
     return (
         <Card.Group itemsPerRow={3}>
             {itemList.map((item, index) => {
+                const { label, isChecked } = item
                 return (
-                    <Card>
+                    <Card key={index}>
                         <Card.Content>
                             <Card.Description>
                                 <Checkbox
+                                    id={index}
                                     className="check-list"
                                     color="primary"
-                                    inputProps={{ 'aria-label': 'secondary checkbox' }}
+                                    onClick={() => onCheckButton(index, item)}
                                 />
                             </Card.Description>
-                            <Card.Description className="item-list">{item}</Card.Description>
+                            {isChecked ?
+                                <Card.Description className="item-list">done</Card.Description>
+                                :
+                                <Card.Description className="item-list">{label}</Card.Description>
+                            }
                             <Card.Description className='action-list'>
                                 <Button color='yellow' onClick={event => onClickEditButton(event, index)}>
                                     <Button.Content>
