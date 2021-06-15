@@ -22,9 +22,13 @@ const InputItem = props => {
     }
 
     const onClickAddButton = () => {
-        let store = [...itemList]
-        store.push(item)
-        setItemList(store)
+        let storeItem = [...itemList]
+        let dataItem = {
+            label: item,
+            isChecked: false
+        }
+        storeItem.push(dataItem)
+        setItemList(storeItem)
     }
 
     return (
