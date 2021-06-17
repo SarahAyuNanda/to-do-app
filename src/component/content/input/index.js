@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Input } from 'semantic-ui-react';
+import { Input, Message } from 'semantic-ui-react';
 import './index.css';
 
 const InputItem = props => {
     const { item, itemList, setItem, setItemList } = props
+    const [isShowAlert, setIsShowAlert] = useState(false)
 
     const actionInput = {
         color: 'blue',
@@ -14,7 +15,12 @@ const InputItem = props => {
         onClick: () => onClickAddButton()
     }
 
-    const onChangeInput = (event, data) => {
+    const onShowHideAlert = () => {
+        setIsShowAlert(false)
+    }
+
+    const onChangeInput = event => {
+        setIsShowAlert(false)
         if (event.key === 'Enter') {
             onClickAddButton()
         }
@@ -27,16 +33,34 @@ const InputItem = props => {
             label: item,
             isChecked: false
         }
-        storeItem.push(dataItem)
+        if (!item) {
+            setIsShowAlert(true)
+        } else {
+            storeItem.push(dataItem)
+        }
         setItemList(storeItem)
     }
 
     return (
-        <Input
-            className='input-list'
-            action={actionInput}
-            onKeyUp={onChangeInput}
-        />
+        <div>
+            {isShowAlert ?
+                <Message
+                    icon="warning circle"
+                    warning
+                    size="tiny"
+                    onDismiss={onShowHideAlert}
+                    header="Please input your todo item!"
+                />
+                :
+                <div />
+            }
+            <Input
+                className='input-list'
+                placeholder="Please input your todo item here!"
+                action={actionInput}
+                onKeyUp={onChangeInput}
+            />
+        </div>
     );
 }
 
