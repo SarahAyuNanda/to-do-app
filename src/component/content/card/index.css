@@ -53,3 +53,8 @@ div.description.action-list {
 i.icon {
     font-size: 14px;
 }
+
+div.ui.divider {
+    width: 1000px;
+    margin: 24px auto;
+}
