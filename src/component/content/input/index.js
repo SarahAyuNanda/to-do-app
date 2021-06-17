@@ -40,9 +40,6 @@ const InputItem = props => {
 
     const onSubmitItem = event => {
         event.preventDefault()
-        if (event.key === 'Enter') {
-            onClickAddButton()
-        }
         setItem("")
     }
 
