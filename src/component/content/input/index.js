@@ -21,9 +21,6 @@ const InputItem = props => {
 
     const onChangeInput = event => {
         setIsShowAlert(false)
-        if (event.key === 'Enter') {
-            onClickAddButton()
-        }
         setItem(event.target.value)
     }
 
@@ -37,8 +34,16 @@ const InputItem = props => {
             setIsShowAlert(true)
         } else {
             storeItem.push(dataItem)
+            setItemList(storeItem)
         }
-        setItemList(storeItem)
+    }
+
+    const onSubmitItem = event => {
+        event.preventDefault()
+        if (event.key === 'Enter') {
+            onClickAddButton()
+        }
+        setItem("")
     }
 
     return (
@@ -54,12 +59,15 @@ const InputItem = props => {
                 :
                 <div />
             }
-            <Input
-                className='input-list'
-                placeholder="Please input your todo item here!"
-                action={actionInput}
-                onKeyUp={onChangeInput}
-            />
+            <form onSubmit={onSubmitItem}>
+                <Input
+                    className='input-list'
+                    placeholder="Please input your todo item here..."
+                    value={item}
+                    action={actionInput}
+                    onChange={onChangeInput}
+                />
+            </form>
         </div>
     );
 }
