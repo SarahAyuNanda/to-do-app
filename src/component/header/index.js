@@ -8,7 +8,7 @@ const AppHeader = () => {
             <Header.Content className='header-content'>
                 TODO APP
                 <Header.Subheader>
-                    Create Your To Do List Here
+                    Create Your ToDo List Here
                 </Header.Subheader>
             </Header.Content>
         </Header>
