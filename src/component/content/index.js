@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import InputItem from './input';
 import CardItem from './card';
+import ModalEdit from '../modal/edit';
 import './index.css';
 
 const AppContent = () => {
@@ -8,6 +9,9 @@ const AppContent = () => {
     const [itemList, setItemList] = useState([])
     const [itemCheckedList, setItemCheckedList] = useState([])
     const [isShowMessage, setIsShowMessage] = useState(false)
+    const [isEdit, setIsEdit] = useState(false)
+    const [itemEditIndex, setItemEditIndex] = useState(0)
+    const [itemEditValue, setItemEditValue] = useState('')
 
     useEffect(() => {
         console.log("itemList : ", itemList);
@@ -34,7 +38,10 @@ const AppContent = () => {
     }
 
     const onClickEditButton = index => {
-        console.log(index);
+        setItemEditIndex(index)
+        setItemEditValue(itemList[index].label)
+        setIsEdit(true)
+        console.log("onClickEditButton for value edit : ", itemList[index].label);
     }
 
     const onClickDeleteButton = index => {
@@ -57,6 +64,25 @@ const AppContent = () => {
         setIsShowMessage(false)
     }
 
+    const onChangeInputEdit = event => {
+        setItemEditValue(event.target.value)
+    }
+
+    const onSaveEdit = () => {
+        let itemEditList = itemList.map((item, i) => {
+            if (i === itemEditIndex) {
+                item.label = itemEditValue
+            }
+            return item
+        })
+        setItemList(itemEditList)
+        setIsEdit(false)
+    }
+
+    const onCloseEdit = () => {
+        setIsEdit(false)
+    }
+
     return (
         <div className='app-content'>
             <InputItem
@@ -72,6 +98,13 @@ const AppContent = () => {
                 onClickEditButton={onClickEditButton}
                 onClickDeleteButton={onClickDeleteButton}
                 onCheckButton={onCheckButton}
+            />
+            <ModalEdit
+                itemEditValue={itemEditValue}
+                isEdit={isEdit}
+                onCloseEdit={onCloseEdit}
+                onSaveEdit={onSaveEdit}
+                onChangeInputEdit={onChangeInputEdit}
             />
         </div>
     );
