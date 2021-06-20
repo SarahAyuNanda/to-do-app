@@ -1,56 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Input, Message } from 'semantic-ui-react';
 import './index.css';
 
 const InputItem = props => {
-    const { item, itemList, setItem, setItemList } = props
-    const [isShowAlert, setIsShowAlert] = useState(false)
+    const { 
+        itemInput, 
+        isShowMessage, 
+        onChangeInput, 
+        onClickAddButton, 
+        onShowHideMessage 
+    } = props
 
     const actionInput = {
         color: 'blue',
         labelPosition: 'right',
         icon: 'add',
         content: 'Add',
-        onClick: () => onClickAddButton()
-    }
-
-    const onShowHideAlert = () => {
-        setIsShowAlert(false)
-    }
-
-    const onChangeInput = event => {
-        setIsShowAlert(false)
-        setItem(event.target.value)
-    }
-
-    const onClickAddButton = () => {
-        let storeItem = [...itemList]
-        let dataItem = {
-            label: item,
-            isChecked: false
-        }
-        if (!item) {
-            setIsShowAlert(true)
-        } else {
-            storeItem.push(dataItem)
-            setItemList(storeItem)
-        }
+        onClick: onClickAddButton
     }
 
     const onSubmitItem = event => {
         event.preventDefault()
-        setItem("")
     }
 
     return (
         <div>
-            {isShowAlert ?
+            {isShowMessage ?
                 <Message
                     icon="warning circle"
                     warning
                     size="tiny"
-                    onDismiss={onShowHideAlert}
+                    onDismiss={onShowHideMessage}
                     header="Please input your todo item!"
                 />
                 :
@@ -60,7 +41,7 @@ const InputItem = props => {
                 <Input
                     className='input-list'
                     placeholder="Please input your todo item here..."
-                    value={item}
+                    value={itemInput}
                     action={actionInput}
                     onChange={onChangeInput}
                 />
@@ -70,10 +51,11 @@ const InputItem = props => {
 }
 
 InputItem.propTypes = {
-    item: PropTypes.string,
-    itemList: PropTypes.array,
-    setItem: PropTypes.any,
-    setItemList: PropTypes.any
+    itemInput: PropTypes.string,
+    isShowMessage: PropTypes.bool,
+    onChangeInput: PropTypes.func,
+    onClickAddButton: PropTypes.func,
+    onShowHideMessage: PropTypes.func
 };
 
 export default InputItem;
