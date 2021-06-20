@@ -4,12 +4,12 @@ import { Button, Card, Checkbox, Divider, Icon } from 'semantic-ui-react';
 import './index.css';
 
 const CardItem = props => {
-    const { 
-        itemList, 
-        itemCheckedList, 
-        onClickEditButton, 
-        onClickDeleteButton, 
-        onCheckButton 
+    const {
+        itemList,
+        itemCheckedList,
+        onClickEditButton,
+        onClickDeleteButton,
+        onCheckButton
     } = props
 
     const onChangeStrikeThrough = value => {
@@ -35,7 +35,7 @@ const CardItem = props => {
                                 </Card.Description>
                                 <Card.Description className="item-list" style={{ "textDecoration": onChangeStrikeThrough(isChecked, index) }}>{label}</Card.Description>
                                 <Card.Description className='action-list'>
-                                    <Button color='yellow' onClick={event => onClickEditButton(event, index)}>
+                                    <Button color='yellow' onClick={() => onClickEditButton(index)}>
                                         <Button.Content>
                                             <Icon name='edit' />
                                         </Button.Content>
@@ -71,7 +71,7 @@ const CardItem = props => {
                                         </Card.Description>
                                         <Card.Description className="item-list" style={{ "textDecoration": onChangeStrikeThrough(isChecked, index) }}>{label}</Card.Description>
                                         <Card.Description className='action-list'>
-                                            <Button color='yellow' onClick={event => onClickEditButton(event, index)}>
+                                            <Button color='yellow' onClick={() => onClickEditButton(index)}>
                                                 <Button.Content>
                                                     <Icon name='edit' />
                                                 </Button.Content>
